@@ -18,7 +18,7 @@ TurtleBot3 Burger를 이용한 OpenCV 기반 실시간 차선 인식 및 주행 
 * **Histogram-based Lane Detection:** 변환된 이미지의 하단 픽셀 밀도를 분석하여 차선의 시작점(Left/Right Base)을 검색합니다.
 * **Sliding Window:** 검색된 시작점부터 윈도우를 쌓아 올리며 차선의 전체 곡률과 중심점을 계산합니다.
 * **PID Control:** 계산된 차선 중앙값과 로봇 중심값의 오차(Error)를 바탕으로 로봇의 선속도 및 각속도(`cmd_vel`)를 제어합니다.
-* **Centerline Detection):** 슬라이딩 윈도우의 연속성 단절(Discontinuity)을 감지하여 점선 형태의 중앙선을 실선과 구분하고, 차선의 소실 여부나 유효성을 판단합니다.
+* **Centerline Detection:** 슬라이딩 윈도우의 연속성 단절(Discontinuity)을 감지하여 점선 형태의 중앙선을 실선과 구분하고, 차선의 소실 여부나 유효성을 판단합니다.
 
 ---
 
@@ -32,12 +32,23 @@ TurtleBot3 Burger를 이용한 OpenCV 기반 실시간 차선 인식 및 주행 
 ## 5. 실행 방법 (Usage)
 
 ### 패키지 빌드
+[Raspberry Pi (Robot Side)]
 ```bash
 cd ~/bot_ws_pi
 colcon build --symlink-install --packages-select bot_pkg_pi
 source install/setup.bash
-# 터미널 1: 로봇 브링업
+
+# 터미널 1 (Bringup): 로봇 하드웨어(OpenCR, 모터, 센서) 활성화
 ros2 launch turtlebot3_bringup robot.launch.py
 
-# 터미널 2: 차선 인식 노드 실행
-ros2 run bot_pkg_pi [실행파일명]
+# 터미널 2 (Custom Nodes): 카메라, 모터 인터페이스, 라이다 노드를 통합 실행
+ros2 launch bot_pkg_pi custom_nodes.launch.py 
+
+[PC (Master Side)]
+```bash
+cd ~/bot_ws_pc
+colcon build --symlink-install --packages-select bot_pkg_pc
+source install/setup.bash
+
+# 터미널 1 (Main Control): OpenCV 차선 인식 및 제어 알고리즘 실행
+ros2 run bot_pkg_pc off_board.py
