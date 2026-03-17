@@ -32,8 +32,7 @@ TurtleBot3 Burger를 이용한 OpenCV 기반 실시간 차선 인식 및 주행 
 ## 5. 실행 방법 (Usage)
 
 ### 패키지 빌드
-[Raspberry Pi (Robot Side)]
-
+**[Raspberry Pi (Robot Side)]**
 '''bash
 cd ~/bot_ws_pi
 colcon build --symlink-install --packages-select bot_pkg_pi
@@ -45,8 +44,7 @@ ros2 launch turtlebot3_bringup robot.launch.py
 # 터미널 2 (Custom Nodes): 카메라, 모터 인터페이스, 라이다 노드를 통합 실행
 ros2 launch bot_pkg_pi custom_nodes.launch.py 
 
-[PC (Master Side)]
-
+**[PC (Master Side)]**
 '''bash
 cd ~/bot_ws_pc
 colcon build --symlink-install --packages-select bot_pkg_pc
