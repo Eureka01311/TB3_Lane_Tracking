@@ -45,7 +45,7 @@ ros2 launch turtlebot3_bringup robot.launch.py
 ros2 launch bot_pkg_pi custom_nodes.launch.py 
 
 [PC (Master Side)]
-```bash
+
 cd ~/bot_ws_pc
 colcon build --symlink-install --packages-select bot_pkg_pc
 source install/setup.bash
