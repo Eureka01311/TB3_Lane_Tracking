@@ -33,7 +33,7 @@ TurtleBot3 Burger를 이용한 OpenCV 기반 실시간 차선 인식 및 주행 
 
 ### 패키지 빌드
 [Raspberry Pi (Robot Side)]
-```bash
+
 cd ~/bot_ws_pi
 colcon build --symlink-install --packages-select bot_pkg_pi
 source install/setup.bash
